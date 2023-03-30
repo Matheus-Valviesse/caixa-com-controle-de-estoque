@@ -1,5 +1,6 @@
 const sequelize = require("../database/database.js");
 const { DataTypes } = require("sequelize");
+const User = require("./User.js");
 
 const Provider = sequelize.define(
   "providers",
@@ -52,8 +53,8 @@ const Provider = sequelize.define(
 // };
 // f
 
-// Provider.belongsTo(User, { foreignKey: "userId" });
-// User.hasMany(Provider, { foreignKey: "userId" });
-// Provider.hasOne(User, { foreignKey: "userId" });
+Provider.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Provider, { foreignKey: "userId" });
+Provider.hasOne(User, { foreignKey: "userId" });
 
 module.exports = Provider;

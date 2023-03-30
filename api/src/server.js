@@ -6,6 +6,7 @@ require("dotenv").config();
  
 const userRoutes = require("./routes/userRoutes.js");
 const providerRoutes = require("./routes/providerRoutes.js");
+const categoryRoutes = require("./routes/categoryRoutes.js");
 
 // Variaveis
 const port = process.env.PORT;
@@ -19,6 +20,7 @@ server.use(logger);
 // Rotas
 server.use("/", userRoutes);
 server.use("/", providerRoutes);
+server.use("/", categoryRoutes);
 
 server.get("/", (req, res) => {
   return res.send("<h1>Servidor rodando ...<h1>");

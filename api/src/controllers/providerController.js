@@ -141,14 +141,14 @@ const providerController = {
 
       const findProviderId = await Provider.findByPk(providerId);
       if (!findProviderId)
-        throw new Error("Fornecor não encontrado ou não existe");
+        throw new Error("Fornecedor não encontrado ou não existe");
       if (id != findProviderId.userId)
         throw new Error("Você não possui permissão para essa operação.");
 
       const deleteProvider = await findProviderId.destroy();
 
       return res.status(200).json({
-        message: `Provedor ${deleteProvider.name}, foi deletado com sucesso`,
+        message: `Fornecedor ${deleteProvider.name}, foi deletado com sucesso`,
       });
     } catch (error) {
       return res.status(400).json({ erro: error.message });

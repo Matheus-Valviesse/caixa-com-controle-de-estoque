@@ -1,7 +1,8 @@
 const sequelize = require("../database/database.js");
 const { DataTypes } = require("sequelize");
+const User = require("./User.js");
 
-conCategory = sequelize.define(
+Category = sequelize.define(
   "categories",
   {
     categoryId: {
@@ -35,7 +36,7 @@ conCategory = sequelize.define(
 // a relação entre as entidades, segue abaixo o codido
 // utilizado para resolver o problema:
 
-// // Criando um índice secundário na coluna 'userId' da tabela 'tokens'
+// // Criando um índice secundário na coluna 'userId' da tabela 'user'
 // const createIndexQuery = "CREATE INDEX userId_index ON types (userId);";
 
 // // Executando a consulta SQL personalizada usando o método query() do Sequelize
@@ -44,8 +45,8 @@ conCategory = sequelize.define(
 // };
 // f
 
-// Category.belongsTo(User, { foreignKey: "userId" });
-// User.hasMany(Category, { foreignKey: "userId" });
-// Category.hasOne(User, { foreignKey: "userId" });
+Category.belongsTo(User, { foreignKey: "userId" });
+User.hasMany(Category, { foreignKey: "userId" });
+Category.hasOne(User, { foreignKey: "userId" });
 
 module.exports = Category;
