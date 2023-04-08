@@ -2,47 +2,57 @@ const sequelize = require("../database/database.js");
 const { DataTypes } = require("sequelize");
 const Category = require("./Category.js");
 const Provider = require("./Provider.js");
+const User = require("./User.js");
 
-const Product = sequelize.define("products", {
-  productId: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-    allowNull: false,
+const Product = sequelize.define(
+  "products",
+  {
+    productId: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    price: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    amount: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    colors: {
+      type: DataTypes.STRING,
+    },
+    image: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    }, 
+    providerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  price: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-  },
-  amount: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  colors: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  image: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  categoryId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  providerId: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-});
+  {
+    timestamps: false,
+  }
+);
 
 // Product.sync({ force: true });
 
@@ -61,10 +71,8 @@ const Product = sequelize.define("products", {
 
 //=====================================================================
 
-// // Criando um índice secundário na coluna 'categoryId' da tabela 'Category'
 // const createIndexQueryC = "CREATE INDEX categoryId_index ON types (categoryId);";
 
-// // Executando a consulta SQL personalizada usando o método query() do Sequelize
 // const c = async () => {
 //   await sequelize.query(createIndexQueryC);
 // };
@@ -76,10 +84,8 @@ const Product = sequelize.define("products", {
 
 //=====================================================================
 
-// // Criando um índice secundário na coluna 'providerId' da tabela 'Provider'
 // const createIndexQueryP = "CREATE INDEX providerId_index ON types (providerId);";
 
-// // Executando a consulta SQL personalizada usando o método query() do Sequelize
 // const p = async () => {
 //   await sequelize.query(createIndexQueryP);
 // };

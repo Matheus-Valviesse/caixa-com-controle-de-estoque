@@ -15,7 +15,7 @@ const types = {
       "A senha precisa ter 1 caractere maiúsculo, 1 minúsculo e 1 digito. Com no mínimo 8 caracteres",
   },
   monetario: {
-    regex: /^[0-9]\d{0,2}(\.\d{3})*\.\d{2}$/,
+    regex: /^[0-9]\d{0.2}(\.\d{3})*\.\d{2}$/,
     message: "Utilize apenas numeros que sigam padrão monetario",
   },
   numero: {
@@ -38,24 +38,28 @@ const types = {
     regex: /^true|false$/,
     message: "Insira um valor correto",
   },
+  valores: {
+    regex: /[^a-zA-Z!@#$%&*?]/,
+    message: "Este campo aceita apenas numeros, ex: 19.90",
+  },
 };
 
 function validate(values) {
-	const value = Object.values(values)[0];
-	const field = Object.keys(values)[0].toLowerCase();
+  const value = Object.values(values)[0];
+  const field = Object.keys(values)[0].toLowerCase();
 
-	if (!value && values.isRequired) {
-		throw Error(`O campo ${field} é obrigatório.`);
-	} else if (
-		value &&
-		values.type &&
-		types[values.type] &&
-		!types[values.type].regex.test(value)
-	) {
-		throw Error(`${types[values.type].message} no campo ${field}`);
-	} else {
-		return true;
-	}
+  if (!value && values.isRequired) {
+    throw Error(`O campo ${field} é obrigatório.`);
+  } else if (
+    value &&
+    values.type &&
+    types[values.type] &&
+    !types[values.type].regex.test(value)
+  ) {
+    throw Error(`${types[values.type].message} no campo ${field}`);
+  } else {
+    return true;
+  }
 }
 
 module.exports = validate;

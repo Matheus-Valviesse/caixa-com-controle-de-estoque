@@ -8,6 +8,7 @@ const validate = require("../functions/validate.js");
 const { sign, verify } = require("jsonwebtoken");
 const dotenv = require("dotenv");
 
+
 dotenv.config();
 
 const providerController = {
@@ -20,11 +21,6 @@ const providerController = {
       validate({ address, isRequired: true });
       validate({ phone, type: "telefone", isRequired: true });
 
-      const userExist = await User.findByPk(id);
-
-      if (!userExist) throw new Error("Usuario precisa estar logado");
-      if (userExist && userExist.role != "ADM")
-        throw new Error("Usuario não possui privilégio");
 
       const providerExistEmail = await Provider.findOne({
         where: {
